@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Rahmz Store (RS) | beli apk prem / pro ya di sini</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #1a1a1a;
+      background-image: 
+        linear-gradient(0deg, rgba(180, 180, 180, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 180, 180, 0.15) 1px, transparent 1px);
+      background-size: 30px 30px;
+      background-position: center center;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 0 1rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ===== ANIMASI GLITCH NAMA STORE (LEBIH INTENS) ===== */
+    .store-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #d4d4d4;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+      position: relative;
+    }
+
+    .store-title .glitch-text {
+      position: relative;
+      display: inline-block;
+      animation: glitchSkew 2s infinite linear alternate-reverse;
+    }
+
+    .store-title .glitch-text::before,
+    .store-title .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+    }
+
+    .store-title .glitch-text::before {
+      color: #ff4444;
+      z-index: -1;
+      animation: glitchBefore 1.8s infinite linear alternate-reverse;
+    }
+
+    .store-title .glitch-text::after {
+      color: #4488ff;
+      z-index: -2;
+      animation: glitchAfter 2s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitchSkew {
+      0%, 85%, 100% { transform: skew(0deg); }
+      86% { transform: skew(1deg); }
+      88% { transform: skew(-0.8deg); }
+      90% { transform: skew(0.5deg); }
+      92% { transform: skew(0deg); }
+    }
+
+    @keyframes glitchBefore {
+      0%, 78%, 100% { 
+        clip-path: inset(0 0 0 0); 
+        transform: translate(0, 0); 
+        opacity: 0;
+      }
+      80% { 
+        clip-path: inset(15% 0 65% 0); 
+        transform: translate(-5px, -2px); 
+        opacity: 0.95;
+      }
+      82% { 
+        clip-path: inset(55% 0 8% 0); 
+        transform: translate(4px, 3px); 
+        opacity: 0.95;
+      }
+      84% { 
+        clip-path: inset(8% 0 72% 0); 
+        transform: translate(-3px, -4px); 
+        opacity: 0.9;
+      }
+      86% { 
+        clip-path: inset(40% 0 35% 0); 
+        transform: translate(5px, 1px); 
+        opacity: 0.95;
+      }
+      88% { 
+        clip-path: inset(0 0 0 0); 
+        transform: translate(0, 0); 
+        opacity: 0;
+      }
+    }
+
+    @keyframes glitchAfter {
+      0%, 76%, 100% { 
+        clip-path: inset(0 0 0 0); 
+        transform: translate(0, 0); 
+        opacity: 0;
+      }
+      77% { 
+        clip-path: inset(60% 0 18% 0); 
+        transform: translate(5px, 2px); 
+        opacity: 0.95;
+      }
+      81% { 
+        clip-path: inset(12% 0 48% 0); 
+        transform: translate(-4px, -3px); 
+        opacity: 0.9;
+      }
+      85% { 
+        clip-path: inset(35% 0 28% 0); 
+        transform: translate(3px, 4px); 
+        opacity: 0.95;
+      }
+      87% { 
+        clip-path: inset(70% 0 5% 0); 
+        transform: translate(-5px, -1px); 
+        opacity: 0.9;
+      }
+      89% { 
+        clip-path: inset(0 0 0 0); 
+        transform: translate(0, 0); 
+        opacity: 0;
+      }
+    }
+
+    /* Efek flicker lebih intens */
+    .store-title .glitch-flicker {
+      animation: flicker 3s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      2% { opacity: 0.6; }
+      3% { opacity: 1; }
+      4% { opacity: 0.4; }
+      5% { opacity: 1; }
+      6% { opacity: 0.7; }
+      7% { opacity: 1; }
+      75% { opacity: 1; }
+      76% { opacity: 0.2; }
+      77% { opacity: 1; }
+      78% { opacity: 0.5; }
+      79% { opacity: 1; }
+      80% { opacity: 0.3; }
+      81% { opacity: 1; }
+    }
+
+    /* Garis glitch horizontal */
+    .store-title .glitch-line {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.4);
+      left: 0;
+      animation: glitchLine 2.5s infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes glitchLine {
+      0%, 88%, 100% { top: 25%; opacity: 0; }
+      89% { top: 25%; opacity: 0.7; }
+      91% { top: 70%; opacity: 0.8; }
+      93% { top: 40%; opacity: 0; }
+      94% { top: 15%; opacity: 0.6; }
+      96% { top: 55%; opacity: 0; }
+    }
+
+    /* ===== TOMBOL KEMBALI IKON ===== */
+    .back-btn-icon {
+      background: none;
+      border: none;
+      color: #aaaaaa;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid #444;
+      background: #252525;
+    }
+
+    .back-btn-icon:hover {
+      color: #ddd;
+      background: #333;
+      border-color: #666;
+      transform: scale(1.05);
+    }
+
+    .back-btn-icon:active {
+      transform: scale(0.9);
+      background: #1a1a1a;
+    }
+
+    /* ===== TOMBOL OWNER TERSEMBUNYI ===== */
+    .secret-owner-trigger {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 8px;
+      height: 8px;
+      background: rgba(60, 60, 60, 0.3);
+      border-radius: 50%;
+      z-index: 9998;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(80, 80, 80, 0.2);
+      opacity: 0.5;
+    }
+
+    .secret-owner-trigger:hover {
+      opacity: 0.8;
+      background: rgba(80, 80, 80, 0.5);
+      box-shadow: 0 0 8px rgba(100, 100, 100, 0.3);
+    }
+
+    .secret-owner-trigger:active {
+      transform: scale(1.5);
+      opacity: 1;
+    }
+
+    .secret-owner-trigger.reveal {
+      animation: secretPulse 0.6s ease;
+    }
+
+    @keyframes secretPulse {
+      0% { transform: scale(1); opacity: 0.5; box-shadow: 0 0 0 0 rgba(120,120,120,0.4); }
+      50% { transform: scale(8); opacity: 1; box-shadow: 0 0 0 20px rgba(120,120,120,0); }
+      100% { transform: scale(1); opacity: 0.5; box-shadow: 0 0 0 0 rgba(120,120,120,0); }
+    }
+
+    /* ===== OVERLAY LOGIN OWNER ===== */
+    .owner-login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .owner-login-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    .owner-login-modal {
+      background: #1a1a1a;
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      width: 90%;
+      max-width: 380px;
+      border: 1px solid #444;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      transform: translateY(30px) scale(0.9);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .owner-login-overlay.active .owner-login-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .owner-login-modal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #555, #888, #555);
+      border-radius: 0 0 3px 3px;
+    }
+
+    .owner-login-modal h3 {
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    .owner-login-modal .lock-icon {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: lockFloat 2s ease-in-out infinite;
+    }
+
+    @keyframes lockFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .owner-login-modal input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1.5px solid #444;
+      border-radius: 2rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #222;
+      color: #e0e0e0;
+      transition: all 0.3s ease;
+      text-align: center;
+      letter-spacing: 3px;
+    }
+
+    .owner-login-modal input:focus {
+      outline: none;
+      border-color: #888;
+      box-shadow: 0 0 0 3px rgba(150, 150, 150, 0.1);
+      background: #252525;
+    }
+
+    .owner-login-modal .btn-unlock {
+      background: #333;
+      color: #ddd;
+      border: 1px solid #555;
+      padding: 0.9rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+    }
+
+    .owner-login-modal .btn-unlock:active {
+      background: #1a1a1a;
+      transform: scale(0.96);
+    }
+
+    .owner-login-modal .btn-close {
+      background: none;
+      border: none;
+      color: #777;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      width: 100%;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .shake {
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    /* ===== HEADER VIDEO (diubah ke iframe) ===== */
+    .video-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 220px;
+      background: #0a0a0a;
+      z-index: 1000;
+      overflow: hidden;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 2px solid #3a3a3a;
+      will-change: transform, opacity;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-header iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .video-header.hidden-header {
+      opacity: 0;
+      transform: translateY(-100%);
+      border-radius: 0 0 50% 50%;
+      pointer-events: none;
+    }
+
+    /* ===== INTRO OVERLAY ===== */
+    .intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f0f0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      pointer-events: all;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .intro-overlay.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 2;
+    }
+
+    .intro-logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transition: opacity 0.5s ease;
+    }
+
+    .intro-logo-container.hide-logo {
+      opacity: 0;
+    }
+
+    .letter {
+      font-size: 6rem;
+      font-weight: 900;
+      color: #e8e8e8;
+      text-shadow: 0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(200,200,200,0.2);
+      will-change: transform;
+    }
+
+    .letter-r {
+      animation: slideInLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .letter-s {
+      animation: slideInRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes slideInLeft {
+      0% { transform: translateX(-120vw); opacity: 0; filter: blur(10px); }
+      60% { transform: translateX(20px); opacity: 1; filter: blur(0); }
+      80% { transform: translateX(-8px); }
+      100% { transform: translateX(0); opacity: 1; filter: blur(0); }
+    }
+
+    @keyframes slideInRight {
+      0% { transform: translateX(120vw); opacity: 0; filter: blur(10px); }
+      60% { transform: translateX(-20px); opacity: 1; filter: blur(0); }
+      80% { transform: translateX(8px); }
+      100% { transform: translateX(0); opacity: 1; filter: blur(0); }
+    }
+
+    .merge-effect {
+      animation: mergePulse 0.7s 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes mergePulse {
+      0% { gap: 2rem; filter: brightness(1); }
+      40% { gap: -0.3rem; filter: brightness(1.6); }
+      70% { gap: 0.3rem; filter: brightness(1.2); }
+      100% { gap: 0.2rem; filter: brightness(1); }
+    }
+
+    .intro-text {
+      color: #bbb;
+      font-weight: 600;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
+      opacity: 0;
+      animation: fadeInText 1s 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      transition: opacity 0.5s ease;
+    }
+
+    .intro-text.hide-text {
+      opacity: 0;
+    }
+
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 0.85; transform: translateY(0); }
+    }
+
+    .expand-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: transparent;
+      border: 4px solid #555;
+      box-shadow: 
+        0 0 0 8px rgba(80,80,80,0.4),
+        0 0 0 20px rgba(80,80,80,0.2),
+        0 0 0 40px rgba(80,80,80,0.1),
+        0 0 60px rgba(100,100,100,0.3);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .expand-circle.active {
+      animation: donutExpand 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes donutExpand {
+      0% { transform: translate(-50%, -50%) scale(0); border-width: 4px; opacity: 1; }
+      30% { transform: translate(-50%, -50%) scale(2); border-width: 3px; opacity: 0.9; }
+      60% { transform: translate(-50%, -50%) scale(25); border-width: 1px; opacity: 0.5; }
+      100% { transform: translate(-50%, -50%) scale(50); border-width: 0.5px; opacity: 0; }
+    }
+
+    /* ===== CONTAINER UTAMA ===== */
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: #1e1e1e;
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+      padding: 1.8rem 1.2rem 2rem;
+      margin: 240px auto 2rem;
+      position: relative;
+      border: 1px solid #3a3a3a;
+      z-index: 1;
+    }
+
+    .container.dashboard-animate {
+      animation: dashboardReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    @keyframes dashboardReveal {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .subtitle {
+      color: #9a9a9a;
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    .catalog-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 1.5rem 0 1.8rem;
+    }
+
+    .item-card {
+      background: #2a2a2a;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+      border: 1px solid #404040;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .item-card.animate-in {
+      animation: cardStagger 0.5s ease forwards;
+    }
+
+    .item-card:nth-child(1).animate-in { animation-delay: 0.1s; }
+    .item-card:nth-child(2).animate-in { animation-delay: 0.2s; }
+    .item-card:nth-child(3).animate-in { animation-delay: 0.3s; }
+    .item-card:nth-child(4).animate-in { animation-delay: 0.4s; }
+
+    @keyframes cardStagger {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .item-card:active {
+      transform: scale(0.98);
+      background: #252525;
+    }
+
+    .item-icon {
+      font-size: 2.4rem;
+      background: #333333;
+      border-radius: 1.2rem;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b0b0b0;
+      font-weight: 800;
+      letter-spacing: 1px;
+      border: 2px solid #555;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #d0d0d0;
+    }
+
+    .item-price {
+      font-weight: 700;
+      color: #aaaaaa;
+      font-size: 1.1rem;
+      margin: 0.25rem 0 0.2rem;
+    }
+
+    .btn-buy {
+      background: #3a3a3a;
+      border: none;
+      color: #e0e0e0;
+      font-weight: 700;
+      padding: 0.7rem 1.4rem;
+      border-radius: 2.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: linear-gradient(145deg, #4a4a4a, #2c2c2c);
+      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.4px;
+      border: 1px solid #555;
+    }
+
+    .btn-buy:active {
+      transform: scale(0.94);
+      background: #1f1f1f;
+    }
+
+    hr {
+      border: 0.5px solid #3a3a3a;
+      margin: 1.8rem 0 1rem;
+    }
+
+    .payment-note {
+      background: #262626;
+      padding: 1rem;
+      border-radius: 1.5rem;
+      font-size: 0.9rem;
+      margin: 1rem 0;
+      border: 1px dashed #666;
+      color: #c0c0c0;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.8rem 0;
+      font-weight: 600;
+      background: #2e2e2e;
+      padding: 0.6rem 1rem;
+      border-radius: 2rem;
+      color: #ccc;
+    }
+
+    .form-group {
+      margin: 1.3rem 0;
+    }
+
+    label {
+      font-weight: 600;
+      color: #c0c0c0;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border: 1.5px solid #444;
+      border-radius: 2rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #2a2a2a;
+      color: #e0e0e0;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #888;
+      box-shadow: 0 0 0 3px rgba(180, 180, 180, 0.15);
+    }
+
+    .btn-submit {
+      background: #333;
+      color: #e0e0e0;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 3rem;
+      font-weight: 700;
+      width: 100%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: #404040;
+      margin-top: 0.8rem;
+      border: 1px solid #555;
+    }
+
+    .btn-submit:active {
+      background: #1a1a1a;
+      transform: scale(0.97);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .order-list {
+      background: #222;
+      border-radius: 1.5rem;
+      padding: 1rem;
+      margin: 1.2rem 0;
+    }
+
+    .order-item {
+      background: #2a2a2a;
+      border-radius: 1.2rem;
+      padding: 1rem;
+      margin-bottom: 0.9rem;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      border: 1px solid #404040;
+    }
+
+    .badge {
+      background: #555;
+      color: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .btn-done {
+      background: #4a4a4a;
+      border: 1px solid #666;
+      color: #ddd;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-done:active {
+      background: #2a2a2a;
+      transform: scale(0.95);
+    }
+
+    .file-upload-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .file-upload-label {
+      background: #3a3a3a;
+      padding: 0.7rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      color: #ddd;
+      border: 1px solid #555;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    #fileNameDisplay {
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 400px) {
+      .video-header { height: 180px; }
+      .container { margin-top: 200px; }
+      .letter { font-size: 4.5rem; }
+      .store-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== TOMBOL OWNER TERSEMBUNYI ========== -->
+  <div class="secret-owner-trigger" id="secretOwnerTrigger"></div>
+
+  <!-- ========== OVERLAY LOGIN OWNER ========== -->
+  <div class="owner-login-overlay" id="ownerLoginOverlay">
+    <div class="owner-login-modal" id="ownerLoginModal">
+      <div class="lock-icon">🔐</div>
+      <h3>Akses Owner</h3>
+      <input type="password" id="ownerPassInput" placeholder="••••••" maxlength="20">
+      <button class="btn-unlock" id="ownerLoginBtn">🔓 Buka</button>
+      <button class="btn-close" id="closeOwnerLogin">✕ Tutup</button>
+    </div>
+  </div>
+
+  <!-- ========== HEADER VIDEO (IFRAME DENGAN FALLBACK) ========== -->
+  <div class="video-header" id="videoHeader">
+    <!-- Iframe utama: ScreenPal -->
+    <iframe id="mainIframe" 
+      src="https://youtu.be/uWRYGYqR14I?si=2KWDP_hn6oHS5e1T" 
+      allowfullscreen 
+      allow="autoplay; encrypted-media"
+      loading="lazy">
+    </iframe>
+    <!-- Iframe cadangan: Kapwing (sembunyi dulu) -->
+    <iframe id="fallbackIframe" 
+      src="https://youtu.be/uWRYGYqR14I?si=2KWDP_hn6oHS5e1T" 
+      allowfullscreen 
+      allow="autoplay; encrypted-media"
+      loading="lazy"
+      style="display: none;">
+    </iframe>
+    <!-- Pesan error jika semua gagal -->
+    <div id="videoError" style="color: #888; font-size: 0.9rem; display: none; text-align: center; padding: 1rem; position: absolute; bottom: 10px; left: 0; right: 0; background: rgba(0,0,0,0.7); border-radius: 8px; margin: 0 10px;">
+      ⚠️ Video tidak dapat dimuat.<br>
+      <span style="font-size: 0.8rem;">Coba buka langsung: <a href="https://go.screenpal.com/watch/cOiv0dnv61g" target="_blank" style="color: #aaa;">ScreenPal</a> atau <a href="https://www.kapwing.com/videos/6a6be230bf1e16141b05720d" target="_blank" style="color: #aaa;">Kapwing</a></span>
+    </div>
+  </div>
+
+  <!-- ========== INTRO OVERLAY ========== -->
+  <div id="introOverlay" class="intro-overlay">
+    <div class="intro-content">
+      <div class="intro-logo-container" id="logoContainer">
+        <span class="letter letter-r">R</span>
+        <span class="letter letter-s">S</span>
+      </div>
+      <div class="intro-text" id="introText">Rahmz Store</div>
+    </div>
+    <div class="expand-circle" id="expandCircle"></div>
+  </div>
+
+  <!-- ========== HALAMAN KATALOG ========== -->
+  <div id="catalogPage" class="container">
+    <h1 class="store-title">
+      🏷️ <span class="glitch-text glitch-flicker" data-text="Rahmz Store (RS)">Rahmz Store (RS)</span>
+      <span class="glitch-line"></span>
+    </h1>
+    <div class="subtitle">Klik beli, bayar, lalu unggah bukti</div>
+
+    <div class="catalog-grid" id="catalogContainer"></div>
+
+    <div id="paymentSection" class="hidden">
+      <hr>
+      <div style="font-weight: 700; font-size: 1.2rem; color:#ccc;" id="selectedItemDisplay"></div>
+      
+      <div class="payment-note">
+        <span style="font-weight:700;">📲 Scan QR atau Transfer ke:</span>
+        <div class="payment-methods">
+          <span>🔵 DANA</span> <span>🟢 GOPAY</span> <span>🟣 OVO</span> 
+        </div>
+        <div style="margin-top: 0.4rem; background: #1e1e1e; padding: 0.5rem; border-radius: 1rem; text-align: center; font-weight: 700; border:1px solid #444;">
+          Nomor Tujuan : <span style="color:#cccccc;">082325360605</span>
+        </div>
+        <p style="font-size:0.8rem; margin-top:0.5rem; color:#aaa;">*Silakan transfer sesuai nominal, lalu unggah bukti</p>
+      </div>
+
+      <div class="form-group">
+        <label>📎 Upload Bukti Pembayaran</label>
+        <div class="file-upload-wrapper">
+          <label for="paymentProof" class="file-upload-label">📷 Pilih File</label>
+          <input type="file" id="paymentProof" accept="image/*" capture="environment">
+          <span id="fileNameDisplay">Belum ada file</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>📞 Nomor HP kamu</label>
+        <input type="tel" id="customerPhone" placeholder="0812xxxxxx">
+      </div>
+      <button class="btn-submit" id="submitPaymentBtn">✅ Kirim Bukti Pembayaran</button>
+      <button class="back-btn-icon" id="cancelPaymentBtn" style="margin: 0.8rem auto 0; display: flex;">↩</button>
+    </div>
+  </div>
+
+  <!-- ========== HALAMAN OWNER ========== -->
+  <div id="ownerPage" class="container hidden">
+    <button class="back-btn-icon" id="backToCatalogBtn">↩</button>
+    <h1 class="store-title">
+      📋 <span class="glitch-text glitch-flicker" data-text="Panel Owner">Panel Owner</span>
+      <span class="glitch-line"></span>
+    </h1>
+    <div class="subtitle">Pesanan masuk & bukti pembayaran</div>
+    
+    <div id="ownerContent">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight:700;">Daftar Pesanan</span>
+        <span class="badge" id="orderCount">0</span>
+      </div>
+      <div class="order-list" id="orderListContainer"></div>
+      <button class="btn-submit" id="clearOrdersBtn" style="background:#4a3a3a;">🗑️ Hapus semua pesanan</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const introOverlay = document.getElementById('introOverlay');
+      const logoContainer = document.getElementById('logoContainer');
+      const introText = document.getElementById('introText');
+      const expandCircle = document.getElementById('expandCircle');
+      const videoHeader = document.getElementById('videoHeader');
+      const catalogPage = document.getElementById('catalogPage');
+      const ownerPage = document.getElementById('ownerPage');
+      
+      const secretTrigger = document.getElementById('secretOwnerTrigger');
+      const ownerLoginOverlay = document.getElementById('ownerLoginOverlay');
+      const ownerLoginModal = document.getElementById('ownerLoginModal');
+      const ownerPassInput = document.getElementById('ownerPassInput');
+      const ownerLoginBtn = document.getElementById('ownerLoginBtn');
+      const closeOwnerLogin = document.getElementById('closeOwnerLogin');
+      
+      const OWNER_PASSWORD = "owner123";
+      
+      secretTrigger.addEventListener('click', () => {
+        secretTrigger.classList.add('reveal');
+        setTimeout(() => secretTrigger.classList.remove('reveal'), 600);
+        ownerLoginOverlay.classList.add('active');
+        ownerPassInput.value = '';
+        setTimeout(() => ownerPassInput.focus(), 400);
+      });
+
+      closeOwnerLogin.addEventListener('click', () => {
+        ownerLoginOverlay.classList.remove('active');
+      });
+
+      ownerLoginOverlay.addEventListener('click', (e) => {
+        if (e.target === ownerLoginOverlay) {
+          ownerLoginOverlay.classList.remove('active');
+        }
+      });
+
+      ownerLoginBtn.addEventListener('click', () => {
+        if (ownerPassInput.value === OWNER_PASSWORD) {
+          ownerLoginOverlay.classList.remove('active');
+          catalogPage.classList.add('hidden');
+          ownerPage.classList.remove('hidden');
+          renderOwnerOrders();
+        } else {
+          ownerLoginModal.classList.add('shake');
+          ownerPassInput.style.borderColor = '#a33';
+          setTimeout(() => {
+            ownerLoginModal.classList.remove('shake');
+            ownerPassInput.style.borderColor = '#444';
+          }, 500);
+          ownerPassInput.value = '';
+          ownerPassInput.focus();
+        }
+      });
+
+      ownerPassInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') ownerLoginBtn.click();
+      });
+
+      document.getElementById('backToCatalogBtn').addEventListener('click', () => {
+        ownerPage.classList.add('hidden');
+        catalogPage.classList.remove('hidden');
+        document.getElementById('paymentSection').classList.add('hidden');
+      });
+
+      // ===== FALLBACK IFRAME: jika utama gagal, tampilkan cadangan =====
+      const mainIframe = document.getElementById('mainIframe');
+      const fallbackIframe = document.getElementById('fallbackIframe');
+      const videoError = document.getElementById('videoError');
+      let mainLoaded = false;
+
+      mainIframe.addEventListener('load', function() {
+        mainLoaded = true;
+      });
+
+      // Setelah 8 detik, cek status
+      setTimeout(function() {
+        if (!mainLoaded) {
+          mainIframe.style.display = 'none';
+          fallbackIframe.style.display = 'block';
+          // Jika cadangan juga gagal, tampilkan pesan error setelah 10 detik
+          setTimeout(function() {
+            // Kita anggap cadangan berhasil jika tidak ada error, tapi karena lintas domain kita tidak bisa deteksi
+            // Tampilkan pesan kecil di bawah sebagai informasi
+            videoError.style.display = 'block';
+          }, 10000);
+        }
+      }, 8000);
+
+      function animateDashboard() {
+        catalogPage.classList.add('dashboard-animate');
+        setTimeout(() => {
+          document.querySelectorAll('#catalogPage .item-card').forEach(card => {
+            card.classList.add('animate-in');
+          });
+        }, 200);
+      }
+
+      window.addEventListener('load', () => {
+        setTimeout(() => { if (logoContainer) logoContainer.classList.add('merge-effect'); }, 1000);
+        setTimeout(() => {
+          if (expandCircle) expandCircle.classList.add('active');
+          if (logoContainer) logoContainer.classList.add('hide-logo');
+          if (introText) introText.classList.add('hide-text');
+        }, 2000);
+        setTimeout(() => { if (introOverlay) introOverlay.classList.add('fade-out'); }, 3000);
+        setTimeout(() => { animateDashboard(); }, 3200);
+      });
+
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > 80 && currentScroll > lastScrollY) {
+              videoHeader.classList.add('hidden-header');
+            } else if (currentScroll < 40 || currentScroll < lastScrollY) {
+              videoHeader.classList.remove('hidden-header');
+            }
+            lastScrollY = currentScroll;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      const catalogItems = [
+        { id: 1, name: "Capcut pro - unlimited", price: 15000, icon: "RS" },
+        { id: 2, name: "WhatsApp premium - unlimited", price: 10000, icon: "RS" },
+        { id: 3, name: "alight motion premium", price: 15000, icon: "RS" },
+        { id: 4, name: "suport owner dan akan tambahkan 10 apk dengan harga diskon 70%", price: 10000, icon: "RS" }
+      ];
+
+      let selectedItem = null;
+      
+      function getOrders() {
+        return JSON.parse(localStorage.getItem('rs_store_orders') || '[]');
+      }
+
+      function saveOrders(orders) {
+        localStorage.setItem('rs_store_orders', JSON.stringify(orders));
+      }
+
+      function addOrder(order) {
+        const orders = getOrders();
+        orders.push(order);
+        saveOrders(orders);
+        renderOwnerOrders();
+      }
+
+      function removeOrderById(orderId) {
+        let orders = getOrders();
+        orders = orders.filter(o => o.id !== orderId);
+        saveOrders(orders);
+        renderOwnerOrders();
+      }
+
+      const catalogContainer = document.getElementById('catalogContainer');
+      const paymentSection = document.getElementById('paymentSection');
+      
+      document.getElementById('submitPaymentBtn').addEventListener('click', () => {
+        if (!selectedItem) return alert('Pilih barang dulu ya.');
+        const file = document.getElementById('paymentProof').files[0];
+        const phone = document.getElementById('customerPhone').value.trim();
+        if (!file) return alert('Harap unggah bukti pembayaran.');
+        if (!phone || !/^[0-9+\-\s]{8,16}$/.test(phone)) return alert('Masukkan nomor HP yang valid.');
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          addOrder({
+            id: Date.now(),
+            itemName: selectedItem.name,
+            price: selectedItem.price,
+            phone: phone,
+            proofImage: e.target.result,
+            timestamp: new Date().toLocaleString('id-ID')
+          });
+          alert('✅ Bukti pembayaran terkirim!');
+          paymentSection.classList.add('hidden');
+          selectedItem = null;
+          document.getElementById('paymentProof').value = '';
+          document.getElementById('fileNameDisplay').textContent = 'Belum ada file';
+        };
+        reader.readAsDataURL(file);
+      });
+
+      document.getElementById('paymentProof').addEventListener('change', (e) => {
+        document.getElementById('fileNameDisplay').textContent = e.target.files[0]?.name || 'Belum ada file';
+      });
+
+      document.getElementById('cancelPaymentBtn').addEventListener('click', () => {
+        paymentSection.classList.add('hidden');
+        selectedItem = null;
+      });
+
+      function renderOwnerOrders() {
+        const orders = getOrders();
+        document.getElementById('orderCount').textContent = orders.length;
+        const container = document.getElementById('orderListContainer');
+        if (!orders.length) {
+          container.innerHTML = '<p style="text-align:center; color:#888;">Belum ada pesanan.</p>';
+          return;
+        }
+        container.innerHTML = orders.slice().reverse().map(o => `
+          <div class="order-item">
+            <div style="display:flex;justify-content:space-between;"><strong>${o.itemName}</strong><span>Rp ${o.price.toLocaleString('id-ID')}</span></div>
+            <div style="font-size:0.8rem;color:#aaa;">📞 ${o.phone}</div>
+            <div style="font-size:0.7rem;color:#777;">🕒 ${o.timestamp}</div>
+            <img src="${o.proofImage}" style="width:100%;max-height:180px;object-fit:cover;border-radius:1rem;margin-top:0.5rem;border:1px solid #555;">
+            <button class="btn-done" onclick="window.removeSingleOrder(${o.id})">✔️ Selesai</button>
+          </div>
+        `).join('');
+      }
+
+      window.removeSingleOrder = function(orderId) {
+        if(confirm('Hapus pesanan?')) removeOrderById(orderId);
+      };
+
+      document.getElementById('clearOrdersBtn').addEventListener('click', () => {
+        if(confirm('Hapus seluruh pesanan?')) { saveOrders([]); renderOwnerOrders(); }
+      });
+
+      function renderCatalog() {
+        catalogContainer.innerHTML = catalogItems.map(item => `
+          <div class="item-card">
+            <div class="item-icon">${item.icon}</div>
+            <div class="item-info">
+              <div class="item-name">${item.name}</div>
+              <div class="item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+            </div>
+            <button class="btn-buy" data-name="${item.name}" data-price="${item.price}">🛒 Beli</button>
+          </div>
+        `).join('');
+        
+        document.querySelectorAll('#catalogPage .btn-buy').forEach(btn => {
+          btn.addEventListener('click', function() {
+            selectedItem = { name: this.dataset.name, price: parseInt(this.dataset.price) };
+            document.getElementById('selectedItemDisplay').innerHTML = `📌 ${selectedItem.name} - Rp ${selectedItem.price.toLocaleString('id-ID')}`;
+            paymentSection.classList.remove('hidden');
+            document.getElementById('paymentProof').value = '';
+            document.getElementById('fileNameDisplay').textContent = 'Belum ada file';
+            document.getElementById('customerPhone').value = '';
+            paymentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+        });
+      }
+
+      renderCatalog();
+    })();
+  </script>
+</body>
+</html>
